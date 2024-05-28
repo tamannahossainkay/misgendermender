@@ -2,11 +2,318 @@
 <html>
   <head>
     <title>MisgenderMender: A Community-Informed Approach to Interventions for Misgendering</title>
+
+<style>
+      h2 {color: #4b2362}
+
+      img {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+      table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            vertical-align: top;
+        }
+      .rounded-button {
+            background-color: #d9c4b1ff;
+            border: none;
+            color: black;
+            padding: 10px 27px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        
+    .table2 {
+        margin: 20px auto;
+        border: 1px solid black;
+        background-color: #e0e0e0;
+    }
+
+    .table2 th, .table2 td {
+        border: 1px solid black; /* Adds borders to individual table headers and cells */
+    }
+
+    .arrow {
+            text-align: center;
+            font-size: large; /* Larger font size for arrows */
+        }
+
+    .table3 {
+      width: 20%;
+      border: 1px solid black;
+      align: left;
+      background-color: #e0e0e0;
+      } 
     
+    .table3 th, .table2 td {
+        border: 1px solid black; /* Adds borders to individual table headers and cells */
+    }
+</style>
+
+  </style>
+
   </head>
 
   <body>
       <div style="max-width: 1200px; margin: 0 auto;">
-    <center><h1><font color="#296d98">MisgenderMender</font>: A Community-Informed Approach to Interventions for Misgendering</h1>
-<p>  <a href="https://www.google.com" class="rounded-button">Paper</a>  <a href="https://github.com/tamannahossainkay/misgendermender-backend" class="rounded-button">Code</a></p>
+    <center><h1><font color="#4b2362">MisgenderMender</font>: A Community-Informed Approach to Interventions for Misgendering</h1>
+<p>  <a href="https://arxiv.org/abs/2404.14695" class="rounded-button">Paper</a>  <a href="https://github.com/tamannahossainkay/misgendermender-backend" class="rounded-button">Code</a></p>
+    </center>
+
+<font color=#b43d6b>Misgendering⎼the act of incorrectly addressing someone's gender⎼</font> inflicts serious harm and is pervasive in everyday technologies, yet there is a notable lack of research to combat it. We pioneer research into interventions for misgendering by:
+<ul>
+<li>Conducting a <font color=#b43d6b>survey of gender-diverse adults</font> in the US to understand perspectives about automated interventions for text-based misgendering
+<li>Based on survey insights, we introduce a <font color=#b43d6b>misgendering interventions task and evaluation dataset, <b>MisgenderMender</b></font>
+</ul>
+
+<h2>Community Survey</h2>
+
+<font color=#b43d6b>33 participants</font> through Queer in AI, International Society of Non-binary Scientists (ISBNS), and social media. 
+
+While most participants wanted misgendering detected across domains, they were split on whether it should be edited on social media.
+
+<img src ='survey.png' width="100%">
+
+
+<table>
+  <tr>
+      <th><u><font color="#4b2362">Concerns about automated interventions</font></u></th>
+      <th><u><font color="#4b2362">Desired Features for automated interventions</font></u></th>
+      <th><u><font color="#4b2362">Detect vs. Correct</font></u></th>
+  </tr>
+  <tr>
+      <td>Fundamental infeasibility</td>
+      <td>Consensual</td>
+      <td>Detect only</td>
+  </tr>
+  <tr>
+      <td>NLP Limitations</td>
+      <td>Flexibility</td>
+      <td>Intent-based Correct</td>
+  </tr>
+  <tr>
+      <td>Security & Privacy</td>
+      <td>User friendly</td>
+      <td>Source-based Correct</td>
+  </tr>
+  <tr>
+      <td>Censorship</td>
+      <td>Context sensitivity</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td></td>
+      <td>LLM fairness</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td></td>
+      <td>LLM transparency</td>
+      <td></td>
+  </tr>
+</table>
+
+
+<h2>Survey Based Dataset Design</h2>
+
+<font color=#b43d6b>To minimize risks we exclusively work with data about public figures:</font>
+
+<ul>
+<li>30 Celebrities 
+<li>Non-binary, trans-man, or trans-woman
+<li>Gender linguistic profile from WikiData
+</ul>
+
+<font color=#b43d6b>We choose source based separation for when to detect vs. correct:</font>
+
+<ul>
+<li><span style="background-color: #fff9b0;">Detect-Only</span>: Social Media
+<li><span style="background-color: #aedff7;">Detect+Correct</span>: LLM Generations
+</ul>
+
+Social media is not corrected due to survey concerns regarding free speech, potential censorship of non-cisgender content, risks of mistaken allyship, & preserving the right to interpret, even offensive, content.
+
+
+<p>We collect an evaluation dataset, <font color=#b43d6b><b>MisgenderMender</b></font>.
+
+<table class="table2">
+  <tr>
+      <th></th>
+      <th><b><font color=#990000>Misgendering</font></b></th>
+      <th><b><font color=#38761d>No Misgendering</font></b></th>
+      <th><b>Total</b></th>
+  </tr>
+  <tr>
+      <td><b>X-Posts</b></td>
+      <td>81</td>
+      <td>1118</td>
+      <td>1199</td>
+  </tr>
+  <tr>
+      <td><b>YouTube</b></td>
+      <td>352</td>
+      <td>1217</td>
+      <td>1559</td>
+  </tr>
+  <tr>
+      <td><b>LLM Gen</b></td>
+      <td>263</td>
+      <td>769</td>
+      <td>1032</td>
+  </tr>
+  <tr>
+      <td><strong>Total</strong></td>
+      <td></td>
+      <td></td>
+      <td><b>3790</b></td>
+  </tr>
+</table>
+
+<h2>Interventions for Misgendering</h2>
+<h3>Problem Setup</h3>
+The misgendering interventions task can be divided into two sub-tasks:
+
+<ul>
+<li>Detect misgendering, 
+<li>Correct misgendering in domains where editing is appropriate
+</ul>
+
+<img src ='pipeline.png' width="100%">
+
+<h3>Examples</h3>
+<div style="display: flex; justify-content: center; align-items: center;">
+<table class="table3">
+  <caption><b>Linguistic Gender Profile</b></caption>
+  <tr>
+      <th>Name</th>
+      <td>Elliot Page</td>
+  </tr>
+  <tr>
+      <th>Gender Identity</th>
+      <td>Trans man, Non-binary</td>
+  </tr>
+  <tr>
+      <th>Pronouns</th>
+      <td>he/him, they/them</td>
+  </tr>
+  <tr>
+      <th>Deadname</th>
+      <td>Ellen Grace Philpotts-Page</td>
+  </tr>
+</table>
+
+<table>
+  <caption><b>Content</b></caption>
+  <tr>
+      <th></th>
+      <td><b>LLM:</b> Ellen Grace credits her mother with her success, and she is eternally grateful for her love and support.</td>
+      <td>&#8594;</td>
+      <td><b>Detect Label:</b><br><b><font color=#990000>Misgendering</font></b></td>
+      <td>&#8594;</td>
+      <td><b>Domain:</b><br><span style="background-color: #aedff7;">Detect+Correct</span></td>
+      <td><b>Corrected:</b><del><font color=#990000>Ellen Grace</font></del> → <font color=#38761d>Elliot</font> credits <del><font color=#990000>her</font></del>→<font color=#38761d>his</font> mother with <del><font color=#990000>her</font></del>→<font color=#38761d>his</font> success, and <del><font color=#990000>she</font></del>→<font color=#38761d>he</font> is eternally grateful for her love and support.</td>
+  </tr>
+  
+  <tr>
+    <th></th>
+    <td><b>X-Posts:</b> "A woman named Ellen Page became a man named Elliot Page" is not an assertion without either ontological or epistemological problems</td>
+    <td>&#8594;</td>
+    <td><b>Detect Label:</b><br><b><font color=#38761d>No Misgendering</font></b></td>
+    <td>&#8594;</td>
+    <td><b>Domain:</b><br><span style="background-color: #fff2cc;">Detect+Correct</span></td>
+    <td></td>
+</tr>
+
+<tr>
+  <th></th>
+  <td><b>X-Posts:</b>John Wayne was a man and Elliot Page is a woman…</td>
+  <td>&#8594;</td>
+  <td><b>Detect Label:</b><br><b><font color=#990000>Misgendering</font></b></td>
+  <td>&#8594;</td>
+  <td><b>Domain:</b><br><span style="background-color: #fff2cc;">Detect+Correct</span></td>
+  <td></td>
+</tr>
+
+</table>
+
+</div>
+
+<h2>Detection Results</h2>
+GPT-4 achieved the highest F1-score across domains, but there is a lot of room for improvement. <font color=#b43d6b>There were errors associated with coreference resolution, understanding questions, temporal relationships, quotations, authorship recognition.</font>
+
+<img src="combined_f1_scores.png", width="100%">
+
+<h3>Error Examples</h3>
+
+<table class="table2">
+  <tr>
+      <th>Error Type</th>
+      <th>Profile</th>
+      <th>Text, Label, and Prediction</th>
+  </tr>
+  <tr>
+      <td class="error-type">Coreference</td>
+      <td><b>Name:</b> Ezra Miller<br><b>Gendered Terms:</b> Neutral</td>
+      <td><b>Tweet:</b> @USERNAME Damn, if Ezra Miller wasn’t a f****** psychopath then he would make a decent Flash.<br><b>Label:</b> Misgendering; <b>Pred:</b> No Misgendering<br><b>GPT-4 Explanation:</b> The tweet refers to Ezra Miller but no masculine or feminine words are used to refer to them, so there is no misgendering.</td>
+  </tr>
+  <tr>
+      <td class="error-type">Quotation</td>
+      <td><b>Name:</b> Elliot Page<br><b>Gendered Terms:</b> Feminine<br><b>Deadname:</b> Ellen Grace Philpotts-Page</td>
+      <td><b>Tweet:</b> @USERNAME "A woman named Ellen Page became a man named Elliot Page" is not an assertion without either ontological or epistemological problems, but it’s one our society was already pretty primed to embrace; so did quickly.<br><b>Label:</b> No Misgendering; <b>Pred:</b> Misgendering<br><b>GPT-4 Explanation:</b> The tweet misgenders Elliot Page by calling him a "woman" which is a feminine gendered term, and thus incorrect as Elliot uses neutral and masculine gendered terms. Also, his old name ’Ellen’ is used which is his deadname.</td>
+  </tr>
+  <tr>
+      <td class="error-type">Question</td>
+      <td>Name: Buck Angel<br>Gendered Terms: Feminine</td>
+      <td>Tweet: @USERNAME Do you think Buck Angel should go to the women-ens changing room? [LINK]<br><b>Label:</b> No Misgendering; <b>Pred:</b> Misgendering<br><b>GPT-4 Explanation:</b> The tweet misgenders Buck Angel by suggesting he should use the women’s changing room, implying that he is a woman, this is contrary to Buck’s masculine gender identity.</td>
+  </tr>
+  <tr>
+      <td class="error-type">Temporal</td>
+      <td><b>Name:</b> Lil Uzi Vert<br><b>Gendered Terms:</b> Neutral<br><b>Deadname:</b> Symere Bysil Wood</td>
+      <td><b>LLM Generation:</b> While I used to think of Lil Uzi Vert as a conventional "he-man," I do not think so anymore.<br><b>Label:</b> No Misgendering; <b>Pred:</b> Misgendering<br><b>GPT-4 Explanation:</b> The tweet misidentifies the masculine gendered term "he-man" to refer to Lil Uzi Vert...</td>
+  </tr>
+</table>
+
+
+<h2>Correction Results</h2>
+Human evaluation of edits showed GPT-4 corrected misgendering in 97% of edits while making unnecessary edits in only 4.6% of cases. <font color=#b43d6b>While this is promising, further work is still needed since these edits were largely single-sentence and context-free.</font>
+
+
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src="edit1.png" alt="Edit 1" style="margin-right: 10px;">
+  <img src="edit2.png" alt="Edit 2">
+</div>
+
+<h3>Error Example</h3>
+<table class="table2">
+  <tr>
+      <th>Profile</th>
+      <th>Text, Edits, Labels</th>
+  </tr>
+  <tr>
+      <td>
+          <b>Name:</b> Andreas Krieger<br>
+          <b>Gendered Terms:</b> Masculine<br>
+          <b>Deadname:</b> Heidi Krieger
+      </td>
+      <td>
+          <b>LLM Generation:</b> This feminine figure is central to Krieger’s art, as she seeks to challenge traditional gender norms and celebrate the unique qualities of women.<br>
+          <b>GPT-4 Edit:</b> This masculine figure is central to Krieger’s story, as he seeks to challenge traditional gender norms and celebrate his unique journey.<br>
+          <b>Label:</b> No Misgendering; <b>Unnecessary Edits:</b> Yes
+      </td>
+  </tr>
+</table>
+
 </html>
